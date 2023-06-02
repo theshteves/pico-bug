@@ -26,21 +26,21 @@ pico_enable_stdio_usb(bug 1) # Enable USB output
 pico_enable_stdio_uart(bug 0) # Disable UART output
 pico_add_extra_outputs(bug) # Generate map/bin/hex/uf2
 
-target_include_directories(app
+target_include_directories(bug
   PRIVATE ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
-target_link_libraries(app
-  #pico_cyw43_arch_none
-  #pico_cyw43_arch_lwip_threadsafe_background
+target_link_libraries(bug
   pico_stdlib
-  #picow_bt_example_common
+  pico_cyw43_arch_none
+  hardware_adc
+  #hardware_base
   #pico_btstack_ble
   #pico_btstack_classic
   #pico_btstack_cyw43
 )
 
-target_link_options(app
+target_link_options(bug
     PRIVATE "LINKER:--print-memory-usage"
     PRIVATE "LINKER:--verbose"
 )
